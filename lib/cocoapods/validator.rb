@@ -1058,7 +1058,7 @@ module Pod
         command += %w(CODE_SIGN_IDENTITY=)
       when :ios
         command += %w(CODE_SIGN_IDENTITY=- -sdk iphonesimulator)
-        command += Fourflusher::SimControl.new.destination(:oldest, 'iOS', deployment_target)
+        command += Fourflusher::SimControl.new.destination(:oldest, :ios, deployment_target)
         xcconfig = consumer.pod_target_xcconfig
         if xcconfig
           archs = xcconfig['VALID_ARCHS']
@@ -1069,10 +1069,10 @@ module Pod
         end
       when :watchos
         command += %w(CODE_SIGN_IDENTITY=- -sdk watchsimulator)
-        command += Fourflusher::SimControl.new.destination(:oldest, 'watchOS', deployment_target)
+        command += Fourflusher::SimControl.new.destination(:oldest, :watchos, deployment_target)
       when :tvos
         command += %w(CODE_SIGN_IDENTITY=- -sdk appletvsimulator)
-        command += Fourflusher::SimControl.new.destination(:oldest, 'tvOS', deployment_target)
+        command += Fourflusher::SimControl.new.destination(:oldest, :tvos, deployment_target)
       end
 
       if analyze
